@@ -40,6 +40,7 @@ import { toolName } from '../app/App';
 import { DataThread } from './DataThread';
 
 import dfLogo from '../assets/df-logo.png';
+import bitsPilaniLogo from '../assets/logo-bits-pilani .svg';
 import exampleImageTable from "../assets/example-image-table.png";
 import { ModelSelectionButton } from './ModelSelectionDialog';
 import { DBTableSelectionDialog } from './DBTableManager';
@@ -182,7 +183,7 @@ Totals (7 entries)	5	5	5	15
 
     let dataUploadRequestBox = <Box sx={{width: '100vw'}}>
         <Box sx={{paddingTop: "8%", display: "flex", flexDirection: "column", textAlign: "center"}}>
-            <Box component="img" sx={{  width: 256, margin: "auto" }} alt="" src={dfLogo} />
+            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
             <Typography variant="h3" sx={{marginTop: "20px"}}>
                 {toolName}
             </Typography>
@@ -205,7 +206,7 @@ Totals (7 entries)	5	5	5	15
 
     let modelSelectionDialogBox = <Box sx={{width: '100vw'}}>
         <Box sx={{paddingTop: "8%", display: "flex", flexDirection: "column", textAlign: "center"}}>
-            <Box component="img" sx={{  width: 256, margin: "auto" }} alt="" src={dfLogo} />
+            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
             <Typography variant="h3" sx={{marginTop: "20px"}}>
                 {toolName}
             </Typography>

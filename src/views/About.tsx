@@ -5,6 +5,7 @@ import { Box, Typography, Button } from "@mui/material";
 import React, { FC } from "react";
 
 import dfLogo from '../assets/df-logo.png';
+import bitsPilaniLogo from '../assets/logo-bits-pilani .svg';
 import { toolName } from "../app/App";
 
 export const About: FC<{}> = function About({ }) {
@@ -12,7 +13,7 @@ export const About: FC<{}> = function About({ }) {
     return (
         <Box sx={{display: "flex", flexDirection: "column", textAlign: "center", overflowY: "auto"}}>
             <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', marginTop: '40px'}}>
-                <Box component="img" sx={{ paddingRight: "12px",  height: 64 }} alt="" src={dfLogo} />
+                <Box component="img" sx={{ paddingRight: "12px", height: 64 }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
                 <Typography variant="h3">
                     {toolName}
                 </Typography>

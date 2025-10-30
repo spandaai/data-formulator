@@ -45,7 +45,7 @@
     }
 
     .derived-column-header {
-        background-color: rgba(255, 215, 0, 0.1);
+        background-color: rgba(252, 176, 23, 0.1); // BITS Yellow with opacity
     }
 
     .highlighted-column-header {
@@ -95,11 +95,11 @@ span.bold {
 }
 
 table .item.derived {
-    background: rgba(255, 215, 0, 0.05);
+    background: rgba(252, 176, 23, 0.05); // BITS Yellow with opacity
 }
 
 table .item.custom {
-    background: rgb(255, 160, 122, 0.08);
+    background: rgba(233, 151, 47, 0.08); // BITS Orange with opacity
 }
 
 
@@ -135,7 +135,7 @@ table .item.selecting {
     }
 
     .derived-column-header {
-        background-color: rgba(255, 215, 0, 0.1);
+        background-color: rgba(252, 176, 23, 0.1); // BITS Yellow with opacity
     }
 
     .ag-row,
@@ -175,14 +175,14 @@ table .item.selecting {
     &.derived {
         .data-view-header-container {
             background-color: #fffef1;
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid #FCB017; // BITS Yellow
         }
     }
 
     &.custom {
         .data-view-header-container {
             background-color: #fff9f8;
-            border-bottom: 2px solid #ffb395;
+            border-bottom: 2px solid #E9972F; // BITS Orange
         }
     }
 

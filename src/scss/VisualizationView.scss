@@ -3,7 +3,7 @@
 
 .visualization-gallery {
     padding: 0; //0px 10px 10px 10px;
-    overflow: hidden;
+    overflow: auto; // allow scrolling when content exceeds container
     flex-grow: 1;
     display: flex;
 
@@ -76,7 +76,7 @@ $accelerate-ease: cubic-bezier(0.4, 0.0, 1, 1);
       background-color: #fff;
     }
     50% {
-      background-color: rgba( 2, 136, 209, 0.2);
+      background-color: rgba(33, 29, 112, 0.2); // BITS Blue with opacity
     }
     100% {
       background-color: #fff;

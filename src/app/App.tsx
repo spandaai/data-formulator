@@ -60,6 +60,7 @@ import { MessageSnackbar } from '../views/MessageSnackbar';
 import { DictTable } from '../components/ComponentType';
 import { AppDispatch } from './store';
 import dfLogo from '../assets/df-logo.png';
+import bitsPilaniLogo from '../assets/logo-bits-pilani .svg';
 import { ModelSelectionButton } from '../views/ModelSelectionDialog';
 import { TableCopyDialogV2 } from '../views/TableSelectionView';
 import { TableUploadDialog } from '../views/TableSelectionView';
@@ -70,11 +71,12 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { DBTableManager, DBTableSelectionDialog, handleDBDownload } from '../views/DBTableManager';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 import { connectToSSE } from '../views/SSEClient';
+import { Footer } from '../components/Footer';
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
-    color: 'black',
+    color: '#211D70', // BITS Pilani Blue
     backgroundColor: "white",
-    borderBottom: "1px solid #C3C3C3",
+    borderBottom: "1px solid #211D70", // BITS Pilani Blue
     boxShadow: "none",
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
@@ -522,7 +524,7 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
     }, []);
 
     useEffect(() => {
-        document.title = toolName;
+        document.title = "BITS Pilani - Data Formulator";
         dispatch(fetchAvailableModels());
         dispatch(getSessionId());
     }, []);
@@ -530,27 +532,32 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
     let theme = createTheme({
         typography: {
             fontFamily: [
+                "Helvetica",
                 "Arial",
-                "Roboto",
-                "Helvetica Neue",
                 "sans-serif"
             ].join(",")
         },
         palette: {
             primary: {
-                main: blue[700]
+                main: '#211D70' // BITS Pilani Blue
             },
             secondary: {
-                main: purple[700]
+                main: '#E9972F' // BITS Orange
             },
             derived: {
-                main: yellow[700], 
+                main: '#FCB017', // BITS Yellow
             },
             custom: {
-                main: orange[700], //lightsalmon
+                main: '#76C2E5', // BITS Light Blue
             },
             warning: {
-                main: '#bf5600', // New accessible color, original (#ed6c02) has insufficient color contrast of 3.11
+                main: '#ED1C24', // BITS Red
+            },
+            error: {
+                main: '#ED1C24', // BITS Red
+            },
+            info: {
+                main: '#76C2E5', // BITS Light Blue
             },
         },
     });
@@ -597,7 +604,7 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
                         backgroundColor: "transparent"
                     }
                 }} color="inherit">
-                    <Box component="img" sx={{ height: 32, marginRight: "12px" }} alt="" src={dfLogo} />
+                    <Box component="img" sx={{ height: 32, marginRight: "12px" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
                     <Typography variant="h6" noWrap component="h1" sx={{ fontWeight: 300, display: { xs: 'none', sm: 'block' } }}>
                         {toolName} {process.env.NODE_ENV == "development" ? "" : ""}
                     </Typography>
@@ -660,11 +667,13 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
                 flexDirection: 'column',
                 height: '100%',
                 width: '100%',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                paddingBottom: '40px' // Space for footer
             }}>
                 {appBar}
                 <RouterProvider router={router} />
                 <MessageSnackbar />
+                <Footer />
             </Box>
         </Box>;
 
