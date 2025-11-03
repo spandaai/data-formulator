@@ -348,6 +348,11 @@ export const DBTableSelectionDialog: React.FC<{ buttonElement: any }> = function
             const data = await response.json();
             if (data.status === 'success') {
                 fetchTables();  // Refresh table list
+                // Keep viewport at the top after DB upload (brute-force retries)
+                const toTop = () => window.scrollTo({ top: 0 });
+                window.requestAnimationFrame(toTop);
+                setTimeout(toTop, 150);
+                setTimeout(toTop, 500);
             } else {
                 // Handle error from server
                 setSystemMessage(data.error || 'Failed to upload table', "error");
@@ -379,6 +384,10 @@ export const DBTableSelectionDialog: React.FC<{ buttonElement: any }> = function
                     setSystemMessage(`Table ${data.original_name} already exists. Renamed to ${data.table_name}`, "warning");
                 } 
                 fetchTables();  // Refresh table list
+                const toTop2 = () => window.scrollTo({ top: 0 });
+                window.requestAnimationFrame(toTop2);
+                setTimeout(toTop2, 150);
+                setTimeout(toTop2, 500);
             } else {
                 setSystemMessage(data.error || 'Failed to upload table', "error");
             }

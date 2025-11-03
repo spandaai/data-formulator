@@ -227,7 +227,12 @@ export const TableSelectionDialog: React.FC<{ buttonElement: any }> = function T
                                     } else {
                                         throw "";
                                     }
-                                    setTableDialogOpen(false); 
+                                    setTableDialogOpen(false);
+                                    // Keep viewport at the top after sample load (brute-force retries)
+                                    const toTop = () => window.scrollTo({ top: 0 });
+                                    window.requestAnimationFrame(toTop);
+                                    setTimeout(toTop, 150);
+                                    setTimeout(toTop, 500);
                                 })
                                 .catch((error) => {
                                     console.log(error)
@@ -266,6 +271,12 @@ export const TableUploadDialog: React.FC<TableUploadDialogProps> = ({ buttonElem
     const existingTables = useSelector((state: DataFormulatorState) => state.tables);
     const existingNames = new Set(existingTables.map(t => t.id));
 
+    // Ensure page scroll snaps to the top shortly after tables mount
+    const scrollToTopSoon = () => {
+        // Allow React to render, then move viewport to the top under the fixed header
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0 }));
+    };
+
     let handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const files = event.target.files;
 
@@ -299,6 +310,7 @@ export const TableUploadDialog: React.FC<TableUploadDialogProps> = ({ buttonElem
                         if (table) {
                             dispatch(dfActions.loadTable(table));
                             dispatch(fetchFieldSemanticType(table));
+                            scrollToTopSoon();
                         }
                     });
                 } else if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
@@ -314,6 +326,9 @@ export const TableUploadDialog: React.FC<TableUploadDialogProps> = ({ buttonElem
                             for (let table of tables) {
                                 dispatch(dfActions.loadTable(table));
                                 dispatch(fetchFieldSemanticType(table));
+                            }
+                            if (tables.length > 0) {
+                                scrollToTopSoon();
                             }
                             if (tables.length == 0) {
                                 dispatch(dfActions.addMessages({

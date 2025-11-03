@@ -6,10 +6,11 @@
     //width: 100%;
     width: 220px;
     overflow-y: auto;
+    overflow-anchor: none; // prevent scroll anchoring when shelf grows
     transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     //overflow: hidden;
     align-items: flex-start;
-    border-left: 1px dashed rgba(33, 29, 112, 0.1); // BITS Blue with opacity
+    border-left: 1px dashed rgba(245, 179, 0, 0.2); // Spanda Yellow with opacity
 
     .example-panel {
         display: flex;
@@ -31,6 +32,7 @@
     //width: 100%;
     width: 236px;
     overflow-y: auto;
+    overflow-anchor: none; // prevent scroll anchoring when shelf grows
     transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     //overflow: hidden;
     align-items: flex-start;

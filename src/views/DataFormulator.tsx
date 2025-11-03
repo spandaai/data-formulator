@@ -40,7 +40,7 @@ import { toolName } from '../app/App';
 import { DataThread } from './DataThread';
 
 import dfLogo from '../assets/df-logo.png';
-import bitsPilaniLogo from '../assets/logo-bits-pilani .svg';
+import spandaLogo from '../assets/spanda-logo.png';
 import exampleImageTable from "../assets/example-image-table.png";
 import { ModelSelectionButton } from './ModelSelectionDialog';
 import { DBTableSelectionDialog } from './DBTableManager';
@@ -110,6 +110,16 @@ export const DataFormulatorFC = ({ }) => {
         }
     }, []);
 
+    // Keep viewport at top whenever tables change (after uploads/samples/DB loads)
+    useEffect(() => {
+        const toTop = () => window.scrollTo({ top: 0 });
+        // Try immediately after render and again after layout settles
+        window.requestAnimationFrame(toTop);
+        const t1 = setTimeout(toTop, 150);
+        const t2 = setTimeout(toTop, 500);
+        return () => { clearTimeout(t1); clearTimeout(t2); };
+    }, [tables.length]);
+
     let conceptEncodingPanel = (
         <Box sx={{display: "flex", flexDirection: "row", width: '100%', flexGrow: 1, overflow: "hidden"}}>
             <ConceptShelf />
@@ -117,7 +127,7 @@ export const DataFormulatorFC = ({ }) => {
     )
 
     const visPaneMain = (
-        <Box sx={{ width: "100%", overflow: "hidden", display: "flex", flexDirection: "row" }}>
+        <Box sx={{ width: "100%", overflow: "auto", display: "flex", flexDirection: "row" }}>
             <VisualizationViewFC />
         </Box>);
 
@@ -128,7 +138,7 @@ export const DataFormulatorFC = ({ }) => {
             minSize={100} size={visPaneSize}
             className={'vis-split-pane'}
             style={{}}
-            pane2Style={{overflowY: "hidden"}}
+            pane2Style={{overflowY: "visible"}}
             onDragFinished={size => { dispatch(dfActions.setVisPaneSize(size)) }}>
             {visPaneMain}
             <Box className="table-box">
@@ -142,9 +152,9 @@ export const DataFormulatorFC = ({ }) => {
             minSize={320}
             primary="second"
             size={displayPanelSize}
-            style={{width: "100%", height: '100%', position: 'relative'}}
+            style={{width: "100%", height: 'auto', position: 'relative'}}
             onDragFinished={size => { dispatch(dfActions.setDisplayPanelSize(size)) }}>
-            <Box sx={{display: 'flex', width: `100%`, height: '100%'}}>
+            <Box sx={{display: 'flex', width: `100%`, height: 'auto'}}>
                 {tables.length > 0 ? 
                         <DataThread />   //<Carousel />
                         : ""} 
@@ -157,7 +167,7 @@ export const DataFormulatorFC = ({ }) => {
         </SplitPane>);
 
     const fixedSplitPane = ( 
-        <Box sx={{display: 'flex', flexDirection: 'row', height: '100%'}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', height: 'auto'}}>
             <Box sx={{display: 'flex', width: `calc(100% - ${280}px)`}}>
             {tables.length > 0 ? 
                     <DataThread />   //<Carousel />
@@ -183,7 +193,7 @@ Totals (7 entries)	5	5	5	15
 
     let dataUploadRequestBox = <Box sx={{width: '100vw'}}>
         <Box sx={{paddingTop: "8%", display: "flex", flexDirection: "column", textAlign: "center"}}>
-            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
+            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="Spanda Logo" src={spandaLogo} />
             <Typography variant="h3" sx={{marginTop: "20px"}}>
                 {toolName}
             </Typography>
@@ -206,7 +216,7 @@ Totals (7 entries)	5	5	5	15
 
     let modelSelectionDialogBox = <Box sx={{width: '100vw'}}>
         <Box sx={{paddingTop: "8%", display: "flex", flexDirection: "column", textAlign: "center"}}>
-            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
+            <Box component="img" sx={{ width: 256, margin: "auto" }} alt="Spanda Logo" src={spandaLogo} />
             <Typography variant="h3" sx={{marginTop: "20px"}}>
                 {toolName}
             </Typography>
@@ -222,7 +232,7 @@ Totals (7 entries)	5	5	5	15
     </Box>;
 
     return (
-        <Box sx={{ display: 'block', width: "100%", height: 'calc(100% - 49px)' }}>
+        <Box sx={{ display: 'block', width: "100%", paddingTop: 0, paddingBottom: '40px' }}>
             <DndProvider backend={HTML5Backend}>
                 {!noBrokenModelSlots ? modelSelectionDialogBox : (tables.length > 0 ? fixedSplitPane : dataUploadRequestBox)} 
             </DndProvider>

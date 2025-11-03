@@ -55,6 +55,11 @@
     }
 }
 
+/* Prevent scroll anchoring jumps when charts/tables mount */
+.vis-split-pane {
+    overflow-anchor: none;
+}
+
 
 // vega action menu
 .vega-embed .vega-actions a  {
@@ -76,7 +81,7 @@ $accelerate-ease: cubic-bezier(0.4, 0.0, 1, 1);
       background-color: #fff;
     }
     50% {
-      background-color: rgba(33, 29, 112, 0.2); // BITS Blue with opacity
+      background-color: rgba(245, 179, 0, 0.2); // Spanda Yellow with opacity
     }
     100% {
       background-color: #fff;

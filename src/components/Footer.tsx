@@ -14,14 +14,14 @@ export const Footer: React.FC = () => {
                 left: 0,
                 right: 0,
                 height: '40px',
-                backgroundColor: '#211D70', // BITS Pilani Blue
+                backgroundColor: '#0B0B0B',
                 padding: '0 20px', // Add some padding for better logo visibility
                 color: 'white',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 zIndex: 1000,
-                borderTop: '1px solid #E9972F', // BITS Orange accent
+                borderTop: '1px solid #F5B300',
             }}
         >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

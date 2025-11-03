@@ -14,7 +14,7 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible; /* let page own the scrollbar */
     will-change: transform;
 }
 
@@ -63,7 +63,8 @@
 }
 
 .table-box {
-    height: 100%;
+    height: auto; /* expand with content; page scrolls */
+    overflow-anchor: none; /* avoid anchor jumps when table appears */
     margin: 0px;
     background: white;
 }

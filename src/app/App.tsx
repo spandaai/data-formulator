@@ -60,7 +60,7 @@ import { MessageSnackbar } from '../views/MessageSnackbar';
 import { DictTable } from '../components/ComponentType';
 import { AppDispatch } from './store';
 import dfLogo from '../assets/df-logo.png';
-import bitsPilaniLogo from '../assets/logo-bits-pilani .svg';
+import spandaLogo from '../assets/spanda-logo.png';
 import { ModelSelectionButton } from '../views/ModelSelectionDialog';
 import { TableCopyDialogV2 } from '../views/TableSelectionView';
 import { TableUploadDialog } from '../views/TableSelectionView';
@@ -74,10 +74,12 @@ import { connectToSSE } from '../views/SSEClient';
 import { Footer } from '../components/Footer';
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
-    color: '#211D70', // BITS Pilani Blue
-    backgroundColor: "white",
-    borderBottom: "1px solid #211D70", // BITS Pilani Blue
+    color: '#F5B300',
+    backgroundColor: "#0B0B0B",
+    borderBottom: "1px solid #1f1f1f",
     boxShadow: "none",
+    top: 0,
+    zIndex: theme.zIndex.appBar,
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -524,7 +526,7 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
     }, []);
 
     useEffect(() => {
-        document.title = "BITS Pilani - Data Formulator";
+        document.title = "Data Formulator";
         dispatch(fetchAvailableModels());
         dispatch(getSessionId());
     }, []);
@@ -539,25 +541,25 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
         },
         palette: {
             primary: {
-                main: '#211D70' // BITS Pilani Blue
+                main: '#F5B300' // Spanda Yellow
             },
             secondary: {
-                main: '#E9972F' // BITS Orange
+                main: '#F5B300' // Spanda Yellow
             },
             derived: {
-                main: '#FCB017', // BITS Yellow
+                main: '#F5B300',
             },
             custom: {
-                main: '#76C2E5', // BITS Light Blue
+                main: '#0B0B0B', // Spanda Black
             },
             warning: {
-                main: '#ED1C24', // BITS Red
+                main: '#ED1C24',
             },
             error: {
-                main: '#ED1C24', // BITS Red
+                main: '#ED1C24',
             },
             info: {
-                main: '#76C2E5', // BITS Light Blue
+                main: '#F5B300',
             },
         },
     });
@@ -595,7 +597,7 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
     )
 
     let appBar = [
-        <AppBar className="app-bar" position="static" key="app-bar-main">
+        <AppBar className="app-bar" position="sticky" key="app-bar-main">
             <Toolbar variant="dense">
                 <Button href={"/"} sx={{
                     display: "flex", flexDirection: "row", textTransform: "none",
@@ -604,7 +606,7 @@ export const AppFC: FC<AppFCProps> = function AppFC(appProps) {
                         backgroundColor: "transparent"
                     }
                 }} color="inherit">
-                    <Box component="img" sx={{ height: 32, marginRight: "12px" }} alt="BITS Pilani Logo" src={bitsPilaniLogo} />
+                    <Box component="img" sx={{ height: 32, marginRight: "12px" }} alt="Spanda Logo" src={spandaLogo} />
                     <Typography variant="h6" noWrap component="h1" sx={{ fontWeight: 300, display: { xs: 'none', sm: 'block' } }}>
                         {toolName} {process.env.NODE_ENV == "development" ? "" : ""}
                     </Typography>

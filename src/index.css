@@ -9,7 +9,10 @@ body,
     height: 100%;
     margin: 0;
     /* transform: translateZ(0); */
-    overflow: hidden;
+    overflow: auto; /* page-level scroll */
+    /* ensure top content isn't hidden under the fixed header when browser restores/anchors */
+    scroll-padding-top: 88px;
 }
+
 
 
